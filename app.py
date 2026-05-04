@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_ace import st_ace
 import time
 import random
 import pandas as pd
@@ -36,9 +37,13 @@ name = st.text_input("👤 이름을 입력하세요")
 st.subheader("제시 코드")
 st.code(st.session_state.sentence)
 
-user_input = st.text_area(
-    "코드를 그대로 입력하세요",
-    key=f"input_area_{st.session_state.input_key}"
+user_input = st_ace(
+    value="",
+    language="python",
+    theme="monokai",
+    key=f"ace_{st.session_state.input_key}",
+    height=200,
+    auto_update=True
 )
 
 if st.button("결과 확인"):
